@@ -1,0 +1,21 @@
+body {
+    background-color: lightblue;
+    color: maroon;
+    font-family: Arial;
+    margin: 0px;
+}
+main{
+    background-color: white;
+    color: brown;
+    margin: 3px;
+}
+header{
+    background-color: aqua;
+    color: black;
+    text-align: center;
+}
+footer{
+     background-color: aqua;
+    color: black;
+    text-align: center;
+}
