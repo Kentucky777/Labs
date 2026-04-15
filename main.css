@@ -17,7 +17,13 @@ header{
 footer{
      background-color: aqua;
     color: black;
+    padding: 10px;
+    font-size: 16px;
     text-align: center;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    left: 0;
 }
 a{
     color:green;
@@ -53,4 +59,7 @@ div.menu{
 div.menu:hover{
     background-color: gray;
     box-shadow: 0 0 15px black  ;
+}
+main{
+    margin: 10px 20px 56px;
 }
