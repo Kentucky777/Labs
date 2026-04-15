@@ -19,3 +19,26 @@ footer{
     color: black;
     text-align: center;
 }
+a{
+    color:green;
+    text-decoration: none;
+}
+a:link{
+    color: rgb(230, 234, 120);
+    text-decoration: underline;
+    background:  #5ce952;
+}
+a:visited{
+    color: rgb(50, 230, 240);
+    background:  #dc52e9;
+}
+a:hover{
+    color: red;
+    text-decoration: underline;
+    box-shadow: 5px 5px 15px 5px rgba(0,0,0,0.2);
+    background:  #bfb9f3;
+}
+a:active{
+    color:black;
+    opacity: 0.3;
+}
