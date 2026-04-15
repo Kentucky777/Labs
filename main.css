@@ -22,6 +22,7 @@ footer{
 a{
     color:green;
     text-decoration: none;
+    transition: 1s 1s;
 }
 a:link{
     color: rgb(230, 234, 120);
@@ -37,8 +38,19 @@ a:hover{
     text-decoration: underline;
     box-shadow: 5px 5px 15px 5px rgba(0,0,0,0.2);
     background:  #bfb9f3;
+    transition: 0.3s;
 }
 a:active{
     color:black;
     opacity: 0.3;
+}
+div.menu{
+    border: 7px solid darkgreen;
+    border-radius: 5px;
+    width: 300px;
+    margin: 0 auto;
+}
+div.menu:hover{
+    background-color: gray;
+    box-shadow: 0 0 15px black  ;
 }
