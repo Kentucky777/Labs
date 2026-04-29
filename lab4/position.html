@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Байков Никита Дмитриевич. Лабораторная 4</title>
+    <link rel="stylesheet" href="../main.css">
+    <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
+    <link rel="icon" href="../favicon-16x16.png">
+    <link rel="icon" href="../favicon-32x32.png">
+    <style>
+        div{
+            width: 300px;
+            line-height: 70px;
+            height: 70px;
+            text-align: center;
+            background-color: white;
+            border: 1px dotted darkgreen;
+            margin: 15px;
+        }
+        .position-relative{
+            position: relative;
+            left: 130px;
+            top: -130px;
+            z-index: -1;
+        }
+        .position-relative:hover{
+            z-index: 10;
+        }
+        .position-absolute1{
+            position: absolute;
+            left: 700px;
+        }
+        .position-absolute2{
+            position: absolute;
+            left: 650px;
+            top: 480px;
+        }
+        .position-absolute3{
+            position: absolute;
+            left: 630px;
+            top: 390px;
+            z-index: -1;
+        }
+        .position-absolute4{
+            position: absolute;
+            left: 850px;
+            top: 480px;
+        }
+        .position-absolute1:hover{
+            z-index: 10;
+            width: 350px;
+            height: 100px;
+            background-color: yellowgreen;
+            box-shadow: 10px 10px 5px brown;
+            text-align: center;
+            margin: 10px;
+        }
+        .position-absolute2:hover{
+            z-index: 10;
+            width: 350px;
+            height: 100px;
+            background-color: yellowgreen;
+            box-shadow: 10px 10px 5px brown;
+            text-align: center;
+            margin: 10px;
+        }
+        .position-absolute3:hover{
+            z-index: 10;
+            width: 350px;
+            height: 100px;
+            background-color: yellowgreen;
+            box-shadow: 10px 10px 5px brown;
+            text-align: center;
+            margin: 10px;
+        }
+        .position-absolute4:hover{
+            z-index: 10;
+            width: 350px;
+            height: 100px;
+            background-color: yellowgreen;
+            box-shadow: 10px 10px 5px brown;
+            text-align: center;
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        НГТУ, ФБ, Лабораторная 4
+    </header>
+    <main>
+        <div>static</div>
+        <div>static</div>
+        <div class="position-relative">relative</div>
+        <div>static</div>
+        <div>static</div>
+        <div class="position-absolute1">absolute 1</div>
+        <div class="position-absolute2">absolute 2</div>
+        <div class="position-absolute3">absolute 3</div>
+        <div class="position-absolute4">absolute 4</div>
+        <div>static</div>
+    </main>
+
+    <footer>
+        &copy; Байков Никита, ФБИ-41, 2 курс, 2026
+    </footer>
+    
+</body>
+</html>
