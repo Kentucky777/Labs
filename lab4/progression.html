@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Байков Никита Дмитриевич. Лабораторная 4</title>
+    <link rel="stylesheet" href="../main.css">
+    <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
+    <link rel="icon" href="../favicon-16x16.png">
+    <link rel="icon" href="../favicon-32x32.png">
+    <style>
+        main {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: calc(100vh - 100px);
+        }
+        .progress-panel {
+            width: 500px;
+            background: white;
+            border-radius: 20px;
+            padding: 40px 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            text-align: center;
+        }
+
+        .progress-panel h3 {
+            color: #2c3e2f;
+            margin-bottom: 25px;
+        }
+
+        .progress-bar-container {
+            background-color: #e0e0e0;
+            border-radius: 10px;
+            height: 30px;
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
+
+        .progress-bar-fill {
+            width: 0%;
+            height: 100%;
+            background: linear-gradient(90deg, #4caf50, #2e7d32);
+            border-radius: 10px;
+        }
+
+        .hold-button {
+            background: #2c3e2f;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            font-size: 1.1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+        }
+
+        .hold-button:hover {
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+            transform: translateY(-2px);
+            background: #1e2a21;
+        }
+
+        .hold-button:active {
+            box-shadow: none;
+            transform: translateY(2px);
+        }
+        .progress-panel:has(.hold-button:active) .progress-bar-fill {
+            animation: fillProgress 5s linear forwards;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        НГТУ, ФБ, Лабораторная 4
+    </header>
+    <main>
+        <div class="progress-panel">
+            <h3>Степень прогресса</h3>
+            <div class="progress-bar-container">
+                <div class="progress-bar-fill" id="progressFill"></div>
+            </div>
+            <button class="hold-button" id="holdButton">Нажмите и удерживайте</button>
+        </div>
+    </main>
+
+    <footer>
+        &copy; Байков Никита, ФБИ-41, 2 курс, 2026
+    </footer>
+</body>
+</html>
