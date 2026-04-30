@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Байков Никита Дмитриевич. Лабораторная 4</title>
+    <link rel="stylesheet" href="../main.css">
+    <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
+    <link rel="icon" href="../favicon-16x16.png">
+    <link rel="icon" href="../favicon-32x32.png">
+    <style>
+        .picture-container {
+            position: relative;
+            display: inline-block;
+        }
+        .picture{
+            display: block;
+            cursor: pointer;
+        }
+        .cloud{
+            width: 300px;
+            line-height: 70px;
+            height: 70px;
+            text-align: center; 
+            background-color: white;
+            border: 1px dotted darkgreen;
+            margin: 15px;
+            box-shadow: 2px 4px 10px rgba(0,0,0,0.1);
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0s linear 0.3s;
+        }
+        .picture-container:hover .cloud{
+            opacity: 1;
+            visibility: visible;
+            transition: opacity 0.3s ease, visibility 0s linear 0s;
+        }
+        .position-absolute1{
+            position: absolute;
+            left: 700px;
+            top: 200px;
+            border-radius: 45px;
+        }
+        .position-absolute2{
+            position: absolute;
+            left: 630px;
+            top: 185px;
+            border-radius: 45px;
+        }
+        .position-absolute3{
+            position: absolute;
+            left: 550px;
+            top: 168px;
+            border-radius: 45px;
+        }
+        .position-absolute4{
+            position: absolute;
+            left: 460px;
+            top: 140px;
+            border-radius: 45px;
+        }
+        .position-absolute5{
+            position: absolute;
+            left: 370px;
+            top: 120px;
+            border-radius: 45px;
+        }
+        
+    </style>
+</head>
+<body>
+    <header>
+        НГТУ, ФБ, Лабораторная 4
+    </header>
+    <main>
+        <div class="picture-container">
+            <img src="kaneki.avif">
+        <div class="cloud position-absolute1" style="width: 4%;";"></div>
+        <div class="cloud position-absolute2" style="width: 5%;"></div>
+        <div class="cloud position-absolute3" style="width: 6%"></div>
+        <div class="cloud position-absolute4" style="width: 7%"></div>
+        <div class="cloud position-absolute5" style="width: 7%">Я не вернусь</div>
+        </div>
+    </main>
+
+    <footer>
+        &copy; Байков Никита, ФБИ-41, 2 курс, 2026
+    </footer>
+    
+</body>
+</html>
