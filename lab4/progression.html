@@ -70,6 +70,10 @@
         .progress-panel:has(.hold-button:active) .progress-bar-fill {
             animation: fillProgress 5s linear forwards;
         }
+        @keyframes fillProgress {
+            from { width: 0%; }
+            to { width: 100%; }
+        }
     </style>
 </head>
 <body>
