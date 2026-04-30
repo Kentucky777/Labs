@@ -11,7 +11,8 @@
     <style>
         main {
             position: relative;
-            min-height: 550px;
+            min-height: 600px;
+            overflow: hidden;
         }
 
         .tag {
@@ -20,136 +21,216 @@
             text-decoration: none;
             font-family: Arial, sans-serif;
             white-space: nowrap;
-            transition: all 0.2s ease;
+            transition: box-shadow 0.2s ease;
             z-index: 1;
+            background: transparent;
             border: none;
             padding: 0;
+            animation-duration: 8s;
+            animation-iteration-count: infinite;
+            animation-timing-function: ease-in-out;
         }
 
         .tag:hover {
+            animation-play-state: paused !important;
             transform: scale(1.4) rotate(0deg) !important;
             box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-            z-index: 10;
+            z-index: 100 !important;
+            background: transparent;
         }
-
         .tag-1 {
-            top: 5%;
-            left: 5%;
-            font-size: 20px;
             color: #e74c3c;
-            transform: rotate(-8deg);
+            font-size: 20px;
+            animation-name: float1;
+        }
+        @keyframes float1 {
+            0% { top: 5%; left: 5%; transform: rotate(-8deg); }
+            25% { top: 8%; left: 12%; transform: rotate(-3deg); }
+            50% { top: 3%; left: 8%; transform: rotate(-10deg); }
+            75% { top: 10%; left: 3%; transform: rotate(-5deg); }
+            100% { top: 5%; left: 5%; transform: rotate(-8deg); }
         }
 
         .tag-2 {
-            top: 15%;
-            right: 10%;
-            font-size: 28px;
             color: #2980b9;
-            transform: rotate(12deg);
+            font-size: 28px;
+            animation-name: float2;
+        }
+        @keyframes float2 {
+            0% { top: 15%; right: 10%; transform: rotate(12deg); }
+            25% { top: 20%; right: 15%; transform: rotate(8deg); }
+            50% { top: 12%; right: 5%; transform: rotate(15deg); }
+            75% { top: 18%; right: 12%; transform: rotate(10deg); }
+            100% { top: 15%; right: 10%; transform: rotate(12deg); }
         }
 
         .tag-3 {
-            top: 30%;
-            left: 8%;
-            font-size: 16px;
             color: #27ae60;
-            transform: rotate(-5deg);
+            font-size: 16px;
+            animation-name: float3;
+        }
+        @keyframes float3 {
+            0% { top: 30%; left: 8%; transform: rotate(-5deg); }
+            25% { top: 35%; left: 15%; transform: rotate(0deg); }
+            50% { top: 28%; left: 5%; transform: rotate(-8deg); }
+            75% { top: 33%; left: 12%; transform: rotate(-2deg); }
+            100% { top: 30%; left: 8%; transform: rotate(-5deg); }
         }
 
         .tag-4 {
-            top: 45%;
-            right: 15%;
-            font-size: 32px;
             color: #8e44ad;
-            transform: rotate(7deg);
+            font-size: 32px;
+            animation-name: float4;
+        }
+        @keyframes float4 {
+            0% { top: 45%; right: 15%; transform: rotate(7deg); }
+            25% { top: 50%; right: 20%; transform: rotate(12deg); }
+            50% { top: 42%; right: 10%; transform: rotate(5deg); }
+            75% { top: 48%; right: 18%; transform: rotate(10deg); }
+            100% { top: 45%; right: 15%; transform: rotate(7deg); }
         }
 
         .tag-5 {
-            bottom: 25%;
-            left: 12%;
-            font-size: 22px;
             color: #d35400;
-            transform: rotate(-12deg);
+            font-size: 22px;
+            animation-name: float5;
+        }
+        @keyframes float5 {
+            0% { bottom: 25%; left: 12%; transform: rotate(-12deg); }
+            25% { bottom: 30%; left: 18%; transform: rotate(-8deg); }
+            50% { bottom: 22%; left: 8%; transform: rotate(-15deg); }
+            75% { bottom: 28%; left: 15%; transform: rotate(-10deg); }
+            100% { bottom: 25%; left: 12%; transform: rotate(-12deg); }
         }
 
         .tag-6 {
-            top: 60%;
-            right: 25%;
-            font-size: 18px;
             color: #1abc9c;
-            transform: rotate(15deg);
+            font-size: 18px;
+            animation-name: float6;
+        }
+        @keyframes float6 {
+            0% { top: 60%; right: 25%; transform: rotate(15deg); }
+            25% { top: 55%; right: 30%; transform: rotate(20deg); }
+            50% { top: 65%; right: 20%; transform: rotate(12deg); }
+            75% { top: 58%; right: 28%; transform: rotate(18deg); }
+            100% { top: 60%; right: 25%; transform: rotate(15deg); }
         }
 
         .tag-7 {
-            bottom: 40%;
-            left: 25%;
-            font-size: 26px;
             color: #e67e22;
-            transform: rotate(-20deg);
+            font-size: 26px;
+            animation-name: float7;
+        }
+        @keyframes float7 {
+            0% { bottom: 40%; left: 25%; transform: rotate(-20deg); }
+            25% { bottom: 45%; left: 30%; transform: rotate(-15deg); }
+            50% { bottom: 38%; left: 20%; transform: rotate(-25deg); }
+            75% { bottom: 43%; left: 28%; transform: rotate(-18deg); }
+            100% { bottom: 40%; left: 25%; transform: rotate(-20deg); }
         }
 
         .tag-8 {
-            top: 75%;
-            left: 35%;
-            font-size: 14px;
             color: #2c3e50;
-            transform: rotate(5deg);
+            font-size: 14px;
+            animation-name: float8;
+        }
+        @keyframes float8 {
+            0% { top: 75%; left: 35%; transform: rotate(5deg); }
+            25% { top: 70%; left: 40%; transform: rotate(10deg); }
+            50% { top: 78%; left: 30%; transform: rotate(2deg); }
+            75% { top: 72%; left: 38%; transform: rotate(8deg); }
+            100% { top: 75%; left: 35%; transform: rotate(5deg); }
         }
 
         .tag-9 {
-            top: 10%;
-            left: 45%;
-            font-size: 30px;
             color: #c0392b;
-            transform: rotate(-3deg);
+            font-size: 30px;
+            animation-name: float9;
+        }
+        @keyframes float9 {
+            0% { top: 10%; left: 45%; transform: rotate(-3deg); }
+            25% { top: 15%; left: 50%; transform: rotate(2deg); }
+            50% { top: 8%; left: 40%; transform: rotate(-6deg); }
+            75% { top: 13%; left: 48%; transform: rotate(0deg); }
+            100% { top: 10%; left: 45%; transform: rotate(-3deg); }
         }
 
         .tag-10 {
-            bottom: 15%;
-            right: 35%;
-            font-size: 24px;
             color: #16a085;
-            transform: rotate(10deg);
+            font-size: 24px;
+            animation-name: float10;
+        }
+        @keyframes float10 {
+            0% { bottom: 15%; right: 35%; transform: rotate(10deg); }
+            25% { bottom: 20%; right: 40%; transform: rotate(15deg); }
+            50% { bottom: 12%; right: 30%; transform: rotate(8deg); }
+            75% { bottom: 18%; right: 38%; transform: rotate(12deg); }
+            100% { bottom: 15%; right: 35%; transform: rotate(10deg); }
         }
 
         .tag-11 {
-            top: 50%;
-            left: 55%;
-            font-size: 19px;
             color: #f39c12;
-            transform: rotate(-15deg);
+            font-size: 19px;
+            animation-name: float11;
+        }
+        @keyframes float11 {
+            0% { top: 50%; left: 55%; transform: rotate(-15deg); }
+            25% { top: 55%; left: 60%; transform: rotate(-10deg); }
+            50% { top: 48%; left: 50%; transform: rotate(-18deg); }
+            75% { top: 53%; left: 58%; transform: rotate(-12deg); }
+            100% { top: 50%; left: 55%; transform: rotate(-15deg); }
         }
 
         .tag-12 {
-            bottom: 55%;
-            right: 45%;
-            font-size: 34px;
             color: #3498db;
-            transform: rotate(8deg);
+            font-size: 34px;
+            animation-name: float12;
+        }
+        @keyframes float12 {
+            0% { bottom: 55%; right: 45%; transform: rotate(8deg); }
+            25% { bottom: 60%; right: 50%; transform: rotate(13deg); }
+            50% { bottom: 52%; right: 40%; transform: rotate(5deg); }
+            75% { bottom: 58%; right: 48%; transform: rotate(10deg); }
+            100% { bottom: 55%; right: 45%; transform: rotate(8deg); }
         }
 
         .tag-13 {
-            top: 20%;
-            left: 70%;
-            font-size: 17px;
             color: #9b59b6;
-            transform: rotate(-10deg);
+            font-size: 17px;
+            animation-name: float13;
+        }
+        @keyframes float13 {
+            0% { top: 20%; left: 70%; transform: rotate(-10deg); }
+            25% { top: 25%; left: 75%; transform: rotate(-5deg); }
+            50% { top: 18%; left: 65%; transform: rotate(-13deg); }
+            75% { top: 23%; left: 72%; transform: rotate(-8deg); }
+            100% { top: 20%; left: 70%; transform: rotate(-10deg); }
         }
 
         .tag-14 {
-            bottom: 10%;
-            left: 80%;
-            font-size: 25px;
             color: #e74c3c;
-            transform: rotate(18deg);
+            font-size: 25px;
+            animation-name: float14;
+        }
+        @keyframes float14 {
+            0% { bottom: 10%; left: 80%; transform: rotate(18deg); }
+            25% { bottom: 15%; left: 85%; transform: rotate(22deg); }
+            50% { bottom: 8%; left: 75%; transform: rotate(15deg); }
+            75% { bottom: 13%; left: 82%; transform: rotate(20deg); }
+            100% { bottom: 10%; left: 80%; transform: rotate(18deg); }
         }
 
         .tag-15 {
-            top: 80%;
-            right: 8%;
-            font-size: 21px;
             color: #2ecc71;
-            transform: rotate(-6deg);
+            font-size: 21px;
+            animation-name: float15;
+        }
+        @keyframes float15 {
+            0% { top: 80%; right: 8%; transform: rotate(-6deg); }
+            25% { top: 85%; right: 15%; transform: rotate(-2deg); }
+            50% { top: 78%; right: 5%; transform: rotate(-9deg); }
+            75% { top: 83%; right: 12%; transform: rotate(-4deg); }
+            100% { top: 80%; right: 8%; transform: rotate(-6deg); }
         }
     </style>
 </head>
