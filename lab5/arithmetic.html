@@ -43,6 +43,41 @@
             let result = a*b
             alert('Произведение ' + a + ' и ' + b + ' равна ' + result);
         }
+        function showDiv(){
+            let inputA = document.getElementById('numberA')
+            let inputB = document.getElementById('numberB')
+
+            let a = parseInt(inputA.value)
+            let b = parseInt(inputB.value)
+            let result = a/b
+            if (isNaN(a)){
+                alert('Введите значение в первое поле');
+                inputA.focus()
+                inputA.select()
+                inputA.style.color = 'red';
+                inputA.style.borderColor = 'red';
+                return
+            }
+            if (isNaN(b)){
+                alert('Введите значение во второе поле');
+                inputB.focus()
+                inputB.select()
+                inputB.style.color = 'red';
+                inputB.style.borderColor = 'red';
+                return
+            }
+            if (b == 0){
+                alert('На ноль делить нельзя!')
+                inputB.focus()
+                inputB.select()
+                inputB.style.color = 'red';
+                inputB.style.borderColor = 'red';
+                return
+            }
+            inputB.style.color='';
+            inputB.style.borderColor = '';
+            alert('Деление' + a + ' и ' + b  + ' равно ' + result)
+        }
     </script>
     <style>
         .message{
@@ -69,6 +104,7 @@
         <div class="message"onclick="showAuthor()">Узнать кто автор страницы</div>
         <div class="message" onclick="showDiff()">Найти разность чисел</div>
         <div class="message" onclick="showMulti()">Найти произведение чисел</div>
+        <div class="message" onclick="showDiv()">Найти отношение чисел</div>
     </main>
 
     <footer style="cursor: pointer;" ondblclick="showhi()">
