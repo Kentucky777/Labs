@@ -78,6 +78,54 @@
             inputB.style.borderColor = '';
             alert('Деление' + a + ' и ' + b  + ' равно ' + result)
         }
+        function showVoz(){
+            let inputA = document.getElementById('numberA')
+            let inputB = document.getElementById('numberB')
+
+            let a = parseInt(inputA.value)
+            let b = parseInt(inputB.value)
+            let result = a**b
+            if (isNaN(a)){
+                alert('Введите значение в первое поле');
+                inputA.focus()
+                inputA.select()
+                inputA.style.color = 'red';
+                inputA.style.borderColor = 'red';
+                return
+            }
+            if (isNaN(b)){
+                alert('Введите значение во второе поле');
+                inputB.focus()
+                inputB.select()
+                inputB.style.color = 'red';
+                inputB.style.borderColor = 'red';
+                return
+            }
+            if (b == 0 && a == 0){
+                alert('Ноль в нулевую нельзя возводить!')
+                inputA.focus()
+                inputA.select()
+                inputA.style.color = 'red';
+                inputA.style.borderColor = 'red';
+                inputB.focus()
+                inputB.select()
+                inputB.style.color = 'red';
+                inputB.style.borderColor = 'red';
+                return
+            }
+            inputB.style.color='';
+            inputB.style.borderColor = '';
+            alert('Возведение ' + a + ' и ' + b  + ' равно ' + result)
+        }
+        function changeOut(buttonNum, backColor, txtColor, b, bWidth, bRad){
+            let output = document.getElementById('output')
+            output.innerHTML = 'Нажата кнопка ' + buttonNum
+            output.style.backgroundColor = backColor
+            output.style.color = txtColor
+            output.style.border = b
+            output.style.borderWidth = bWidth
+            output.style.borderRadius = bRad
+        }
     </script>
     <style>
         .message{
@@ -90,6 +138,11 @@
             border-radius: 10px;
             display: inline-block;
             text-align: center;
+        }
+        #output{
+            border: 1px solid;
+            width: 300px;
+            height: 40px;
         }
     </style>
 </head>
@@ -105,6 +158,15 @@
         <div class="message" onclick="showDiff()">Найти разность чисел</div>
         <div class="message" onclick="showMulti()">Найти произведение чисел</div>
         <div class="message" onclick="showDiv()">Найти отношение чисел</div>
+        <div class="message" onclick="showVoz()">Возвести число в степень</div>
+        
+        <div>
+            <input type="button" value="Кнопка 1" onclick="changeOut(1, 'red', 'yellow', 'solid', 3, 10)">
+            <input type="button" value="Кнопка 2" onclick="changeOut(2, 'black', 'lime', 'dotted', 5, 15)">
+            <input type="button" value="Кнопка 3" onclick="changeOut(3, 'black', 'white', 'solid', 5, 50)">
+            <input type="button" value="Кнопка 4" onclick="changeOut(4, 'white', 'black', 'ribbed', 4, 15)">
+        </div>
+        <div id="output"></div>
     </main>
 
     <footer style="cursor: pointer;" ondblclick="showhi()">
