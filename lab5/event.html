@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Байков Никита Дмитриевич. Лабораторная 5</title>
+    <link rel="stylesheet" href="../main.css">
+    <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
+    <link rel="icon" href="../favicon-16x16.png">
+    <link rel="icon" href="../favicon-32x32.png">
+    <style>
+        #block {
+            width: 400px;
+            height: 300px;
+            background-color: #d0e8f0;
+            border: 2px solid #888;
+            padding: 10px;
+            font-size: 16px;
+            transition: background-color 0.2s, border 0.2s, color 0.2s;
+        }
+
+        #block.ctrl {
+            color: red;
+        }
+
+        #block.alt {
+            background-color: #fff176;
+        }
+
+        #block.shift {
+            border: 4px solid #1a6fcc;
+        }
+    </style>
+    <script>
+        function showCoords(event) {
+            let x = event.clientX;
+            let y = event.clientY;
+
+            let keys = [];
+            if (event.ctrlKey)  keys.push('Нажата клавиша Ctrl');
+            if (event.altKey)   keys.push('Нажата клавиша Alt');
+            if (event.shiftKey) keys.push('Нажата клавиша Shift');
+
+            let keysText = '';
+            if (keys.length) {
+                keysText = '<br><br>' + keys.join('<br>');
+            }
+
+            let div = document.getElementById('block');
+
+            div.innerHTML =
+                '<b>x</b> = ' + x + 'px<br>' +
+                '<b>y</b> = ' + y + 'px' +
+                keysText;
+
+            div.classList.toggle('ctrl',  event.ctrlKey);
+            div.classList.toggle('alt',   event.altKey);
+            div.classList.toggle('shift', event.shiftKey);
+        }
+    </script>
+</head>
+<body>
+    <header>
+        НГТУ, ФБ, Лабораторная 5
+    </header>
+    <main>
+        <div id="block" onmousemove="showCoords(event)"></div>
+    </main>
+
+    <footer>
+        &copy; Байков Никита, ФБИ-41, 2 курс, 2026
+    </footer>
+</body>
+</html>
