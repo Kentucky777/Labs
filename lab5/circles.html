@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Байков Никита Дмитриевич. Лабораторная 5</title>
+    <link rel="stylesheet" href="../main.css">
+    <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
+    <link rel="icon" href="../favicon-16x16.png">
+    <link rel="icon" href="../favicon-32x32.png">
+    <style>
+        #circles-area {
+            position: relative;
+            width: 500px;
+            height: 420px;
+            background-color: #add8e6; 
+            border: 2px solid #888;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+
+        .circle {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            font-weight: bold;
+            color: #6b1010;
+            cursor: pointer;
+            border: 2px solid rgba(100, 50, 50, 0.4);
+            user-select: none;
+
+            transition: width 0.7s ease, height 0.7s ease,
+                        opacity 0.7s ease, font-size 0.7s ease;
+        }
+
+        .circle.hidden {
+            width: 0;
+            height: 0;
+            opacity: 0;
+            font-size: 0;
+        }
+
+        #c1  { left:  20px; top: 310px; background-color: #22cc22; color: white; border-color: #118811; }
+        #c2  { left: 100px; top:  80px; background-color: #d8cece; }
+        #c3  { left: 220px; top: 100px; background-color: #e07070; }
+        #c4  { left: 190px; top: 195px; background-color: #c9b8b8; }
+        #c5  { left: 320px; top: 330px; background-color: #c9b8b8; }
+        #c6  { left: 300px; top: 170px; background-color: #f4a0a0; }
+        #c7  { left: 100px; top: 340px; background-color: #f0956a; }
+        #c8  { left: 400px; top: 160px; background-color: #1a9090; color: white; border-color: #0d5c5c; }
+        #c9  { left:  80px; top: 220px; background-color: #a8c4e8; }
+        #c10 { left: 250px; top:  20px; background-color: #ffffff; }
+
+        #restore-btn {
+            padding: 8px 20px;
+            font-size: 15px;
+            cursor: pointer;
+            background-color: #5a9fd4;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            margin-bottom: 10px;
+        }
+        #restore-btn:hover {
+            background-color: #3a7fb8;
+        }
+    </style>
+    <script>
+        function hideCircle(el) {
+            el.classList.add('hidden');
+        }
+
+        function restoreAll() {
+            document.querySelectorAll('.circle').forEach(function(el) {
+                el.classList.remove('hidden');
+            });
+        }
+    </script>
+</head>
+<body>
+    <header>
+        НГТУ, ФБ, Лабораторная 5
+    </header>
+    <main>
+        <button id="restore-btn" onclick="restoreAll()">Восстановить все круги</button>
+
+        <div id="circles-area">
+            <div class="circle" id="c1"  onclick="hideCircle(this)">1</div>
+            <div class="circle" id="c2"  onclick="hideCircle(this)">2</div>
+            <div class="circle" id="c3"  onclick="hideCircle(this)">3</div>
+            <div class="circle" id="c4"  onclick="hideCircle(this)">4</div>
+            <div class="circle" id="c5"  onclick="hideCircle(this)">5</div>
+            <div class="circle" id="c6"  onclick="hideCircle(this)">6</div>
+            <div class="circle" id="c7"  onclick="hideCircle(this)">7</div>
+            <div class="circle" id="c8"  onclick="hideCircle(this)">8</div>
+            <div class="circle" id="c9"  onclick="hideCircle(this)">9</div>
+            <div class="circle" id="c10" onclick="hideCircle(this)">10</div>
+        </div>
+    </main>
+
+    <footer>
+        &copy; Байков Никита, ФБИ-41, 2 курс, 2026
+    </footer>
+</body>
+</html>
