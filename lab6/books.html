@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Байков Никита Дмитриевич. Лабораторная 6</title>
+    <link rel="stylesheet" href="../main.css">
+    <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
+    <link rel="icon" href="../favicon-16x16.png">
+    <link rel="icon" href="../favicon-32x32.png">
+    <script src="books.js"></script>
+    <script>
+        function showBooks() {
+            const bookList = document.getElementById('bookList');
+            for (let i = 0; i < books.length; i++) {
+                const b = books[i];
+ 
+                let classes = 'book-card';
+                if (b.bestseller) classes += ' bestseller';
+                if (!b.inStock) classes += ' out-of-stock';
+ 
+                let bestsellerBadge = '';
+                if (b.bestseller) {
+                    bestsellerBadge = '<span class="badge-bestseller">Бестселлер</span>';
+                }
+ 
+                let stockBadge = '';
+                if (!b.inStock) {
+                    stockBadge = '<span class="badge-out-of-stock">Нет в наличии</span>';
+                }
+ 
+                bookList.innerHTML += `
+                    <div class="${classes}">
+                        <div class="book-info">
+                            <span><b>${b.author}.</b> <span class="book-title">${b.name}</span></span>
+                            <div class="book-meta">${b.publicationYear} г.</div>
+                        </div>
+                        <div class="book-right">
+                            <span class="book-price">${b.price} ₽</span>
+                            ${bestsellerBadge}
+                            ${stockBadge}
+                        </div>
+                    </div>
+                `;
+            }
+        }
+    </script>
+    <style>
+        #bookList {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            max-width: 700px;
+            margin-top: 16px;
+        }
+ 
+        .book-card {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 16px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            background: #fff;
+        }
+ 
+        .book-card.bestseller {
+            border-color: #f0a500;
+            background: #fffbf0;
+        }
+ 
+        .book-card.out-of-stock {
+            opacity: 0.45;
+        }
+ 
+        .book-info {
+            flex: 1;
+        }
+ 
+        .book-title {
+            font-style: italic;
+        }
+ 
+        .book-meta {
+            font-size: 0.85em;
+            color: #666;
+            margin-top: 3px;
+        }
+ 
+        .book-right {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 4px;
+            margin-left: 16px;
+            white-space: nowrap;
+        }
+ 
+        .book-price {
+            font-weight: bold;
+        }
+ 
+        .badge-bestseller {
+            font-size: 0.75em;
+            background: #f0a500;
+            color: #fff;
+            padding: 2px 8px;
+            border-radius: 3px;
+        }
+ 
+        .badge-out-of-stock {
+            font-size: 0.75em;
+            color: #999;
+        }
+    </style>
+</head>
+<body onload="showBooks()">
+    <header>
+        НГТУ, ФБ, Лабораторная 6
+    </header>
+    <main>
+        <h1>Список книг</h1>
+        <div id="bookList">
+
+        </div>
+    </main>
+
+    <footer>
+        &copy; Байков Никита, ФБИ-41, 2 курс, 2026
+    </footer>
+    
+</body>
+</html>
