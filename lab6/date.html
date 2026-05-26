@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Байков Никита Дмитриевич. Лабораторная 6</title>
+    <link rel="stylesheet" href="../main.css">
+    <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
+    <link rel="icon" href="../favicon-16x16.png">
+    <link rel="icon" href="../favicon-32x32.png">
+    <script>
+        const LOCALES = [
+            { code: 'ru-RU', name: 'Россия' },
+            { code: 'en-US', name: 'США' },
+            { code: 'ja-JP', name: 'Япония' },
+            { code: 'zh-CN', name: 'Китай' },
+            { code: 'ar-SA', name: 'Саудовская Аравия' },
+        ];
+ 
+        function showDate() {
+            let out = document.getElementById('current-date');
+            let today = new Date();
+            out.innerHTML = today.toLocaleString('ru-RU');
+ 
+            let localeOut = document.getElementById('locale-dates');
+            let html = '';
+            LOCALES.forEach(function(loc) {
+                html += '<p><b>' + loc.name + ':</b> ' + today.toLocaleString(loc.code) + '</p>';
+            });
+            localeOut.innerHTML = html;
+        }
+    </script>
+</head>
+<body onload="showDate()">
+    <header>
+        НГТУ, ФБ, Лабораторная 6
+    </header>
+    <main>
+        <div id ="current-date"></div>
+        <div id="locale-dates"></div>
+    </main>
+
+    <footer>
+        &copy; Байков Никита, ФБИ-41, 2 курс, 2026
+    </footer>
+    
+</body>
+</html>
