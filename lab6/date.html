@@ -48,6 +48,19 @@
             document.getElementById('stop-btn').disabled = true;
             document.getElementById('start-btn').disabled = false;
         }
+        let timerDate;
+        function startUpdateTime(){
+            showDate();
+            timerDate = setInterval(showDate, 1000);
+            document.getElementById('start-date-btn').disabled = true;
+            document.getElementById('stop-date-btn').disabled = false;
+        }
+
+        function stopUpdateTime(){
+            clearInterval(timerDate);
+            document.getElementById('stop-date-btn').disabled = true;
+            document.getElementById('start-date-btn').disabled = false;
+        }
     </script>
 </head>
 <body onload="showDate()">
@@ -60,6 +73,10 @@
         <div>
             <button onclick="startChangeColors()" id = "start-btn">Старт</button>
             <button onclick="stopChangeColors()" disabled id = "stop-btn">Стоп</button>
+        </div>
+        <div>
+            <button onclick="startUpdateTime()" id="start-date-btn">Обновлять время</button>
+            <button onclick="stopUpdateTime()" disabled id="stop-date-btn">Остановить обновление времени</button>
         </div>
     </main>
 
