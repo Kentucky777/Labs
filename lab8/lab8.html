@@ -45,10 +45,17 @@
                         <button @click="edit(id, flower)">?</button>
                     </td>
                 </tr>
-            </table>
-                
+            </table>   
             <hr>
 
+            <h2>Цветы</h2>
+            <ul class="list-group">
+                <li v-for="(flower, id) in flowers" class="list-group-item">
+                    {{ flower }} <button @click="edti(id, flower)">?</button>
+                </li>
+            </ul>
+            <hr>
+            
             <h2>Калькулятор</h2>
             <div class="row g-5">
                 <div class="col-auto">
