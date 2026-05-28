@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Байков Никита Дмитриевич. Лабораторная 7</title>
+    <link rel="stylesheet" href="../main.css">
+    <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
+    <link rel="icon" href="../favicon-16x16.png">
+    <link rel="icon" href="../favicon-32x32.png">
+    <style>
+        #weather-card {
+            display: none;
+            max-width: 340px;
+            margin: 20px auto;
+            border: 2px solid #5a9fd4;
+        }
+
+        #weather-card .card-header {
+            color: #cc0000;
+            text-align: center;
+            padding: 10px 12px 6px;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        #weather-card table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        #weather-card table tr td {
+            padding: 6px 10px;
+            border: 1px solid #5a9fd4;
+            font-size: 14px;
+        }
+    </style>
+    <script>
+        function showWeather() {
+            const url = 'https://api.open-meteo.com/v1/forecast?latitude=55.0084&longitude=82.9357&hourly=temperature_2m&timezone=Asia%2FNovosibirsk&forecast_days=1';
+            fetch(url)
+                .then(function(response) {
+                    return response.json();
+                })
+                .then(function(json) {
+                    const times = json.hourly.time;
+                    const temps = json.hourly.temperature_2m;
+
+                    document.getElementById('weather-date').innerText = new Date().toLocaleDateString('ru-RU');
+                    document.getElementById('temp-8').innerText  = temps[8]  + ' °C';
+                    document.getElementById('temp-12').innerText = temps[12] + ' °C';
+                    document.getElementById('temp-20').innerText = temps[20] + ' °C';
+
+                    document.getElementById('weather-card').style.display = 'block';
+                    document.getElementById('btn').disabled = true;
+                });
+        }
+    </script>
+</head>
+<body>
+    <header>
+        НГТУ, ФБ, Лабораторная 7
+    </header>
+    <main>
+        <button onclick="showWeather()" id="btn">Погода</button>
+
+        <div id="weather-card">
+            <div class="card-header">Погода в Новосибирске, <span id="weather-date"></span></div>
+            <table>
+                <tr>
+                    <td>8:00</td>
+                    <td id="temp-8"></td>
+                </tr>
+                <tr>
+                    <td>12:00</td>
+                    <td id="temp-12"></td>
+                </tr>
+                <tr>
+                    <td>20:00</td>
+                    <td id="temp-20"></td>
+                </tr>
+            </table>
+        </div>
+    </main>
+
+    <footer>
+        &copy; Байков Никита, ФБИ-41, 2 курс, 2026
+    </footer>
+</body>
+</html>
