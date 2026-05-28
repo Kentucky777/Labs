@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Байков Никита Дмитриевич. Лабораторная 7</title>
+    <link rel="stylesheet" href="../main.css">
+    <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
+    <link rel="icon" href="../favicon-16x16.png">
+    <link rel="icon" href="../favicon-32x32.png">
+    <style>
+        #euro-card {
+            display: none;
+            max-width: 340px;
+            margin: 20px auto;
+            border: 2px solid #5a9fd4;
+        }
+
+        #euro-card .card-header {
+            color: #cc0000;
+            text-align: center;
+            padding: 10px 12px 6px;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        #euro-card table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        #euro-card table tr td {
+            padding: 6px 10px;
+            border: 1px solid #5a9fd4;
+            font-size: 14px;
+        }
+
+        #euro-card .diff-up   { color: #008000; font-weight: bold; }
+        #euro-card .diff-down { color: #cc0000; font-weight: bold; }
+    </style>
+    <script>
+        function showEuroExchange() {
+            const url = 'https://www.cbr-xml-daily.ru/daily_json.js';
+            fetch(url)
+                .then(function(response) {
+                    return response.json();
+                })
+                .then(function(json) {
+                    const eur       = json.Valute.EUR;
+                    const current   = eur.Value;
+                    const previous  = eur.Previous;
+                    const diff      = (current - previous).toFixed(4);
+                    const date      = new Date(json.Date).toLocaleDateString('ru-RU');
+                    const prevDate  = new Date(json.PreviousDate).toLocaleDateString('ru-RU');
+
+                    let diffClass, diffText;
+                    if (diff > 0) {
+                        diffClass = 'diff-up';
+                        diffText  = '+' + diff + ' курс вырос';
+                    } else if (diff < 0) {
+                        diffClass = 'diff-down';
+                        diffText  = diff + ' курс упал';
+                    } else {
+                        diffClass = 'diff-zero';
+                        diffText  = '0';
+                    }
+
+                    document.getElementById('euro-date').innerText    = date;
+                    document.getElementById('euro-current').innerText = current.toFixed(2) + ' ₽';
+                    document.getElementById('euro-prev-date').innerText = prevDate;
+                    document.getElementById('euro-previous').innerText = previous.toFixed(2) + ' ₽';
+
+                    const diffCell = document.getElementById('euro-diff');
+                    diffCell.innerText  = diffText;
+                    diffCell.className  = diffClass;
+
+                    document.getElementById('euro-card').style.display = 'block';
+                    document.getElementById('btn').disabled = true;
+                });
+        }
+    </script>
+</head>
+<body>
+    <header>
+        НГТУ, ФБ, Лабораторная 7
+    </header>
+    <main>
+        <button onclick="showEuroExchange()" id="btn">Курс евро</button>
+
+        <div id="euro-card">
+            <div class="card-header">Курс евро к рублю</div>
+            <table>
+                <tr>
+                        <td>Текущий</td>
+                        <td id="euro-date"></td>
+                        <td id="euro-current"></td>
+                    </tr>
+                    <tr>
+                        <td>Предыдущий</td>
+                        <td id="euro-prev-date"></td>
+                        <td id="euro-previous"></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">Изменение</td>
+                        <td id="euro-diff"></td>
+                    </tr>
+            </table>
+
+        </div>
+    </main>
+
+    <footer>
+        &copy; Байков Никита, ФБИ-41, 2 курс, 2026
+    </footer>
+</body>
+</html>
