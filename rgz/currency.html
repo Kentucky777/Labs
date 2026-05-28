@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>СПБ Биржа — Курс валют (EUR)</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav class="sidebar">
+  <div class="brand">СПБ&nbsp;Биржа</div>
+  <a href="about.html">О компании</a>
+  <a href="news.html">Новости</a>
+  <a href="currency.html">Курс валют</a>
+  <a href="contacts.html">Контакты</a>
+  <a href="video.html">Видео</a>
+</nav>
+
+<header class="site-header">
+  <img class="logo" src="logo.png" alt="Логотип" onerror="this.style.display='none'">
+  <div class="titles"><h1>Курс валют</h1><p>Калькулятор: рубль ⇄ евро (EUR)</p></div>
+</header>
+
+<main>
+  <section>
+    <h2>Калькулятор валют (EUR)</h2>
+    <div class="calc">
+      <div class="rate-line" id="rateLine">Загрузка актуального курса…</div>
+      <div class="row">
+        <label for="rub">Рубли (RUB)</label>
+        <input type="number" id="rub" placeholder="0" min="0" step="any">
+      </div>
+      <button class="swap" id="swapBtn">⇅</button>
+      <div class="row">
+        <label for="eur">Евро (EUR)</label>
+        <input type="number" id="eur" placeholder="0" min="0" step="any">
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Динамика курса EUR (за период ≈ 1 месяц)</h2>
+    <div class="chart-wrap">
+      <div class="chart-info" id="chartInfo">Наведите и щёлкните по столбцу, чтобы увидеть дату и курс</div>
+      <div class="bars" id="bars">Загрузка данных…</div>
+    </div>
+  </section>
+</main>
+
+<button id="toTop" title="Наверх">↑</button>
+<footer class="site-footer">Источник курса: cbr-xml-daily.ru</footer>
+
+<script src="common.js"></script>
+<script>
+let rate = null;
+
+fetch('https://www.cbr-xml-daily.ru/daily_json.js')
+  .then(r => r.json())
+  .then(d => {
+    const eur = d.Valute.EUR;
+    rate = eur.Value / eur.Nominal;
+    document.getElementById('rateLine').innerHTML =
+      `Актуальный курс на ${d.Date.slice(0,10)}: <b>1 EUR = ${rate.toFixed(2)} ₽</b>`;
+  })
+  .catch(() => {
+    rate = 100; // запасное значение, если сеть недоступна
+    document.getElementById('rateLine').textContent =
+      'Не удалось загрузить курс. Используется ориентировочное значение: 1 EUR ≈ 100 ₽';
+  });
+
+const rub = document.getElementById('rub');
+const eur = document.getElementById('eur');
+
+rub.addEventListener('input', () => {
+  if (rate && rub.value !== '') eur.value = (rub.value / rate).toFixed(2);
+  else if (rub.value === '') eur.value = '';
+});
+eur.addEventListener('input', () => {
+  if (rate && eur.value !== '') rub.value = (eur.value * rate).toFixed(2);
+  else if (eur.value === '') rub.value = '';
+});
+
+document.getElementById('swapBtn').addEventListener('click', () => {
+  const r = rub.value; rub.value = eur.value; eur.value = r;
+  rub.dispatchEvent(new Event('input'));
+});
+
+function fmt(d){
+  return d.getFullYear() + '/' +
+    String(d.getMonth()+1).padStart(2,'0') + '/' +
+    String(d.getDate()).padStart(2,'0');
+}
+
+async function loadHistory(){
+  const days = [];
+  const today = new Date();
+  for (let i = 30; i >= 0; i--){
+    const d = new Date(today);
+    d.setDate(today.getDate() - i);
+    days.push(d);
+  }
+  const results = [];
+  for (const d of days){
+    try {
+      const res = await fetch(`https://www.cbr-xml-daily.ru/archive/${fmt(d)}/daily_json.js`);
+      if(!res.ok) continue;
+      const j = await res.json();
+      if (j.Valute && j.Valute.EUR){
+        const v = j.Valute.EUR.Value / j.Valute.EUR.Nominal;
+        results.push({date: j.Date.slice(0,10), value: v});
+      }
+    } catch(e){}
+  }
+  drawChart(results);
+}
+
+function drawChart(data){
+  const bars = document.getElementById('bars');
+  const info = document.getElementById('chartInfo');
+  bars.innerHTML = '';
+  if (!data.length){ bars.textContent = 'Нет данных для отображения.'; return; }
+
+  const vals = data.map(d => d.value);
+  const min = Math.min(...vals), max = Math.max(...vals);
+  const span = (max - min) || 1;
+
+  data.forEach(d => {
+    const bar = document.createElement('div');
+    bar.className = 'bar';
+    const h = 25 + ((d.value - min) / span) * 75;
+    bar.style.height = h + '%';
+    bar.title = `${d.date}: ${d.value.toFixed(2)} ₽`;
+    bar.addEventListener('click', () => {
+      document.querySelectorAll('.bar.selected').forEach(b => b.classList.remove('selected'));
+      bar.classList.add('selected');
+      info.innerHTML = `<b>${d.date}</b> — 1 EUR = <b>${d.value.toFixed(2)} ₽</b>`;
+    });
+    bars.appendChild(bar);
+  });
+}
+
+loadHistory();
+</script>
+</body>
+</html>
