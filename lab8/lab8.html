@@ -20,8 +20,8 @@
         <div id="app">
             <h1 :title="messageRus">{{ message }}</h1>
             <p>Счётчик: {{ counter }}</p>
-            <button @click="incCounter" v-if="counter < 10">+++</button>
-            <button @click="decCounter" v-if="counter > 0">---</button>
+            <button @click="incCounter" v-if="counter < 10"><i class="bi bi-arrow-up"></i></button>
+            <button @click="decCounter" v-if="counter > 0"><i class="bi bi-arrow-down"></i></button>
             <hr>
 
             <h2>Пользователь:</h2>
@@ -40,10 +40,14 @@
                 </thead>
                 <tr v-for="(flower, id) in flowers">
                     <td>
-                    {{ flower }} 
+                        <span v-if="flower === null">загружается...</span>
+                        <span v-else>{{ flower }}</span>
                     </td>
                     <td>
-                        <button @click="edit(id, flower)" class="btn btn-primary"><i class="bi bi-pencil-fill"></i></button>
+                        <button @click="edit(id, flower)" class="btn btn-primary" v-if="flower !== null">
+                            <i class="bi bi-pencil-fill"></i>
+                        </button>
+                        <div class="spinner-border" role="status" v-if="flower === null"></div>
                     </td>
                 </tr>
             </table>   
@@ -54,7 +58,7 @@
                     <h2 class="card-title">Цветы</h2>
                     <ul class="list-group">
                         <li v-for="(flower, id) in flowers" class="list-group-item">
-                            {{ flower }} <button @click="edti(id, flower)">?</button>
+                            {{ flower }} <button @click="edit(id, flower)"><i class="bi bi-pencil-fill"></i></button>
                         </li>
                     </ul>
                 </div>
@@ -113,7 +117,7 @@
                 },
                 edit(id, flower){
                     let newName = prompt('Введите имя цветка:', flower);
-                    this.flowers[id] = 'сохранение...';
+                    this.flowers[id] = null;
                     setTimeout(() =>{
                         this.flowers[id] = newName;
                     }, 3000);
