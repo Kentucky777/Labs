@@ -46,7 +46,7 @@
                     return response.json();
                 })
                 .then(function(json) {
-                    const eur       = json.Valute.EUR;
+                    const eur       = json.Valute.USD;
                     const current   = eur.Value;
                     const previous  = eur.Previous;
                     const diff      = (current - previous).toFixed(4);
